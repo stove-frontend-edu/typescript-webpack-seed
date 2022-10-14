@@ -25,7 +25,8 @@
       "types": ["node"],
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
-      "keyofStringsOnly": true
+      "keyofStringsOnly": true,
+      "experimentalDecorators": true
     },
     "include": [
       "./src/**/*"
