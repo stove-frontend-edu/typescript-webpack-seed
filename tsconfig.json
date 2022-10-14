@@ -12,7 +12,7 @@
       ],
       "allowJs": true,
       "strict": true,
-      "strictNullChecks": false,
+      "strictNullChecks": true,
       "strictPropertyInitialization": false,
       // produce a source map
       "sourceMap": true,
