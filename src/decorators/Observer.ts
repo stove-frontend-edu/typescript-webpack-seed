@@ -11,7 +11,7 @@ function Observer() {
 	return function <T extends new (...args: any[]) => ObserverClassType>(OriginalClass: T) {
 		return class extends OriginalClass implements ObserverClassType {
 			constructor(...args: any[]) {
-				super();
+				super(...args);
 
 				if (this.stores) {
 					const storeKeys = Object.keys(this.stores);
