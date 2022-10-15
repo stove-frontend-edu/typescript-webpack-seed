@@ -13,6 +13,7 @@ module.exports = {
 	plugins: ['@typescript-eslint'],
 	ignorePatterns: ['webpack-config/**', 'webpack.config.js'],
 	rules: {
+		'@typescript-eslint/no-non-null-assertion': 'off',
 		'prettier/prettier': [
 			'error',
 			{
