@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import BaseStore from '@/stores/BaseStore';
 
+export interface ObserverClassType {
+	render: () => void;
+	stores?: Record<string, BaseStore>;
+}
+
 function Observer() {
-	return function <T extends { new (...args: any[]): { render: () => void; stores?: Record<string, BaseStore> } }>(OriginalClass: T) {
-		return class extends OriginalClass {
+	return function <T extends new (...args: any[]) => ObserverClassType>(OriginalClass: T) {
+		return class extends OriginalClass implements ObserverClassType {
 			constructor(...args: any[]) {
 				super();
 

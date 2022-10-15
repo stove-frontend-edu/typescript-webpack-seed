@@ -1,16 +1,17 @@
-class BaseStore {
-	private static baseStoreInstance: BaseStore | null = null;
-	private _observer = {};
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ObserverClassType } from '@/decorators/Observer';
 
-	private constructor() {
-		// prevent to make instance
+abstract class BaseStore {
+	protected observer = new Set<ObserverClassType>();
+
+	subscribe(context: ObserverClassType) {
+		this.observer.add(context);
 	}
 
-	static getInstance() {
-		if (!this.baseStoreInstance) {
-			this.baseStoreInstance = new BaseStore();
-		}
-		return this.baseStoreInstance;
+	update() {
+		setTimeout(() => {
+			this.observer.forEach((component) => component.render());
+		}, 0);
 	}
 }
 
