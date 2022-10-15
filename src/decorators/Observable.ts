@@ -4,12 +4,17 @@
 import BaseStore from '@/stores/BaseStore';
 
 function Observable() {
-	return function <T extends { new (...args: any[]): BaseStore }>(OriginalClass: T) {
-		return class extends OriginalClass {
+	return function <T extends { new (...args: any[]): BaseStore }>(OriginalClass: T): T {
+		let instance: BaseStore;
+
+		return class {
 			constructor(...args: any[]) {
-				super();
+				if (instance) return instance;
+
+				instance = new OriginalClass(...args);
+				return instance;
 			}
-		};
+		} as T;
 	};
 }
 
