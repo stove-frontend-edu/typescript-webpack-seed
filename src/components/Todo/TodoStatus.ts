@@ -22,11 +22,15 @@ class TodoStatus {
 	private todoStatusTemplate() {
 		const { todoStore } = this.stores;
 
-		return /* html */ `
-            <span>
-                ${todoStore.todo.length > 0 ? `전체 ${todoStore.todo.length} 중 ${todoStore.doneTodo.length} 개 완료` : ''} 
-            </span>
-        `;
+		const todoStatus = /* html */ `
+			<div>
+				<span>
+					전체 ${todoStore.todo.length} 중 ${todoStore.doneTodo.length} 개 완료
+				<span>
+			</div>
+		`;
+
+		return todoStore.todo.length > 0 ? todoStatus : '';
 	}
 
 	render() {

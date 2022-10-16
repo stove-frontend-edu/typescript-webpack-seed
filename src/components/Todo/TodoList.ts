@@ -44,10 +44,12 @@ class TodoList {
 			.map((todoItem) => {
 				return /* html */ `
                 <li data-key=${todoItem.id} class="todo-item">
-                    <input type="checkbox" ${todoItem.isDone ? 'checked' : ''}/>
-                    <span>
-                        ${todoItem.isDone ? `<del>${todoItem.content}</del>` : todoItem.content}
-                    </span>
+					<div>
+						<input type="checkbox" ${todoItem.isDone ? 'checked' : ''}/>
+						<div>
+							${todoItem.isDone ? `<del>${todoItem.content}</del>` : todoItem.content}
+						</div>
+					</div>
                     <button>
                         삭제
                     </button>
