@@ -4,12 +4,7 @@ import { Action, Observable } from '@/decorators';
 
 @Observable()
 class TodoStore extends BaseStore {
-	private _todo: TodoItem[] = [
-		TodoItem.create({
-			id: 0,
-			content: '청소',
-		}),
-	];
+	private _todo: TodoItem[] = [];
 
 	constructor() {
 		super();
@@ -26,7 +21,7 @@ class TodoStore extends BaseStore {
 	@Action()
 	addItem(content: string) {
 		const newTodo = TodoItem.create({
-			id: this._todo.length,
+			id: this._todo.length === 0 ? 0 : this._todo.at(-1)!.id + 1,
 			content,
 		});
 
@@ -34,15 +29,17 @@ class TodoStore extends BaseStore {
 	}
 
 	@Action()
-	toggleDoneState(index: number) {
+	toggleDoneState(id: number) {
 		const newTodos = [...this._todo];
-		newTodos[index].isDone = !newTodos[index].isDone;
+		newTodos.forEach((item) => {
+			if (item.id === id) item.isDone = !item.isDone;
+		});
 		this._todo = newTodos;
 	}
 
 	@Action()
-	deleteItem(index: number) {
-		const newTodos = [...this._todo].filter((_, idx) => idx !== index);
+	deleteItem(id: number) {
+		const newTodos = [...this._todo].filter((item) => item.id !== id);
 		this._todo = newTodos;
 	}
 }
