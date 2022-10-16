@@ -24,10 +24,14 @@ class TodoList {
 		$todoList.addEventListener('click', ({ target }) => {
 			if (!(target instanceof HTMLElement)) return;
 
+			const { todoStore } = this.stores;
+
 			const curIndex = Number(target.closest('li')!.dataset.key);
 
 			if (target instanceof HTMLInputElement) {
-				this.stores.todoStore.toggleDoneState(curIndex);
+				todoStore.toggleDoneState(curIndex);
+			} else if (target instanceof HTMLButtonElement) {
+				todoStore.deleteItem(curIndex);
 			}
 		});
 	}
