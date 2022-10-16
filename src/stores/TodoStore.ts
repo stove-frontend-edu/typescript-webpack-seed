@@ -19,6 +19,10 @@ class TodoStore extends BaseStore {
 		return this._todo;
 	}
 
+	get doneTodo() {
+		return this._todo.filter((item) => item.isDone);
+	}
+
 	@Action()
 	addItem(content: string) {
 		const newTodo = TodoItem.create({
