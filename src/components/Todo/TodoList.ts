@@ -1,4 +1,5 @@
 import { Observer } from '@/decorators';
+
 import TodoStore from '@/stores/TodoStore';
 
 @Observer()

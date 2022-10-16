@@ -1,9 +1,11 @@
 import './main-style.css';
 
-import { DocumentSelectionExample } from './component/document-selection-example';
+import TodoView from './view/TodoView';
 
 const excute = () => {
-    const documentSelectionExample = new DocumentSelectionExample();
+	const app = document.querySelector('#app')!;
+
+	new TodoView({ root: app });
 };
 
 excute();
