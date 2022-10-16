@@ -35,6 +35,12 @@ class TodoStore extends BaseStore {
 		newTodos[index].isDone = !newTodos[index].isDone;
 		this._todo = newTodos;
 	}
+
+	@Action()
+	deleteItem(index: number) {
+		const newTodos = [...this._todo].filter((_, idx) => idx !== index);
+		this._todo = newTodos;
+	}
 }
 
 export default TodoStore;
