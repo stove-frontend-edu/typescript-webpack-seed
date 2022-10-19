@@ -8,7 +8,10 @@ const path = require('path');
 module.exports = {
     entry: './src/main.ts',
     resolve: {
-        extensions: ['.js', '.ts', '...']
+        extensions: ['.js', '.ts', '...'],
+        alias: {
+            "@": path.resolve(__dirname + "/../src")
+        }
     },
     devtool: 'inline-source-map',
     module: {

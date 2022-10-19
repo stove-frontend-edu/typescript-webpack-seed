@@ -1,0 +1,74 @@
+import { Observer } from '@/decorators';
+
+import TodoStore from '@/stores/TodoStore';
+
+@Observer()
+class TodoList {
+	stores = {
+		todoStore: new TodoStore(),
+	} as const;
+	root: Element;
+	$todoContainer: HTMLDivElement;
+
+	constructor({ root }: { root: Element }) {
+		this.root = root;
+
+		this.$todoContainer = document.createElement('div');
+		this.$todoContainer.setAttribute('class', 'todo-wrapper');
+
+		this.root.appendChild(this.$todoContainer);
+	}
+
+	private bindEvent() {
+		const $todoList = document.querySelector('.todo-list')!;
+
+		$todoList.addEventListener('click', ({ target }) => {
+			if (!(target instanceof HTMLElement)) return;
+
+			const { todoStore } = this.stores;
+
+			const curIndex = Number(target.closest('li')!.dataset.key);
+
+			if (target instanceof HTMLInputElement) {
+				todoStore.toggleDoneState(curIndex);
+			} else if (target instanceof HTMLButtonElement) {
+				todoStore.deleteItem(curIndex);
+			}
+		});
+	}
+
+	private todoListTemplate() {
+		const todo = this.stores.todoStore.todo;
+
+		const todoList = todo
+			.map((todoItem) => {
+				return /* html */ `
+                <li data-key=${todoItem.id} class="todo-item">
+					<div>
+						<input type="checkbox" ${todoItem.isDone ? 'checked' : ''}/>
+						<div>
+							${todoItem.isDone ? `<del>${todoItem.content}</del>` : todoItem.content}
+						</div>
+					</div>
+                    <button>
+                        삭제
+                    </button>
+                </li>
+            `;
+			})
+			.join('');
+
+		return /* html */ `
+            <ul class="todo-list">
+                ${todoList}
+            </ul>
+        `;
+	}
+
+	render() {
+		this.$todoContainer.innerHTML = this.todoListTemplate();
+		this.bindEvent();
+	}
+}
+
+export default TodoList;

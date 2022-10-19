@@ -12,20 +12,22 @@
       ],
       "allowJs": true,
       "strict": true,
-      "strictNullChecks": false,
+      "strictNullChecks": true,
       "strictPropertyInitialization": false,
       // produce a source map
       "sourceMap": true,
       "baseUrl": ".",
       "outDir": "dist",
       "paths": {
+        "@/*": ["./src/*"],
         "components/*": ["./src/components/*"],
         "assets/*": ["./src/assets/*"]
       },
       "types": ["node"],
       "allowSyntheticDefaultImports": true,
       "resolveJsonModule": true,
-      "keyofStringsOnly": true
+      "keyofStringsOnly": true,
+      "experimentalDecorators": true
     },
     "include": [
       "./src/**/*"
