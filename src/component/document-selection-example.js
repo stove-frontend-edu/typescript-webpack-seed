@@ -11,6 +11,6 @@ export class DocumentSelectionExample {
     }
 
     selection() {
-        document.querySelector('#result').innerText = this.numbers.map(x => x * x);
+        document.querySelector('#result').innerText = "콘솔확인";
     }
 }
