@@ -1,9 +1,9 @@
 import './main-style.css';
 
-import { DocumentSelectionExample } from './component/document-selection-example';
+import {App} from "./App";
 
 const excute = () => {
-    const documentSelectionExample = new DocumentSelectionExample();
+    new App(document.querySelector('#result'));
 };
 
 excute();
