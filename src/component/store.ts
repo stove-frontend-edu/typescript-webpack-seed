@@ -1,6 +1,5 @@
 import { ADD, FLUSH } from "./constant";
 
-
 class MokokoStore {
     public static instance: MokokoStore;
     private _mokokos: number;
