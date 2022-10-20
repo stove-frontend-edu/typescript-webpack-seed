@@ -14,11 +14,9 @@ class MokokoStore {
             switch(action){
                 case ADD:
                     this._mokokos += 1;
-                    console.log("mokoko: " + this._mokokos)
                     break;
                 case FLUSH:
                     this._mokokos = 0;
-                    console.log("mokoko: " + this._mokokos)
                     break;
             }
             receiver(this._mokokos);
