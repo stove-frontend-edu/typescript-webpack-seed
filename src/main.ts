@@ -1,9 +1,4 @@
 import './main-style.css';
+import { MokokoWorld } from './component/mokoko-world';
 
-import { DocumentSelectionExample } from './component/document-selection-example';
-
-const excute = () => {
-    const documentSelectionExample = new DocumentSelectionExample();
-};
-
-excute();
+const mokokoWorld = new MokokoWorld();
